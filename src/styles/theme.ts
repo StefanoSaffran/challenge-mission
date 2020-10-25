@@ -9,6 +9,7 @@ export default {
     lightGrey: '#f3f3f3',
     label: '#fff',
     background: '#131200',
+    backgroundAlternative: '#252412',
   },
   fontSizes: {
     huge: '2.4rem',

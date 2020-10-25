@@ -24,8 +24,8 @@ export default createGlobalStyle`
 
   body {
     height: auto;
-    background: ${({ theme }) => theme.colors.lightGrey};
-    color: ${({ theme }) => theme.colors.grey};
+    background: ${({ theme }) => theme.colors.backgroundAlternative};
+    color: ${({ theme }) => theme.colors.lightGrey};
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale;
