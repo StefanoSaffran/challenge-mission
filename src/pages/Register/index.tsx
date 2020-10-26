@@ -3,14 +3,21 @@ import React, { useState } from 'react';
 import DefaultLayout from '../_layouts/default';
 import { Form } from './styles';
 
+import { useCart, Product } from '~/contexts/cart';
 import Input from '~/components/Input';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(Number(undefined));
+  const { addProduct } = useCart();
 
   const handleSubmit = () => {
-    console.log(name, price);
+    const product = {
+      name,
+      price,
+    } as Product;
+
+    addProduct(product);
   };
 
   return (
