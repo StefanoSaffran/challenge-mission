@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import DefaultLayout from '../_layouts/default';
-import { Container, Wrapper } from './styles';
+import { Form } from './styles';
 
 import Input from '~/components/Input';
 
@@ -15,38 +15,34 @@ const Register = () => {
 
   return (
     <DefaultLayout>
-      <Container>
-        <Wrapper>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>Cadastro de Produtos</legend>
+      <Form onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Novo Produto</legend>
 
-              <Input
-                required
-                autoComplete="off"
-                name="name"
-                label="Nome"
-                value={name}
-                onChange={({ target }) => setName(target.value)}
-              />
-              <Input
-                required
-                autoComplete="off"
-                name="price"
-                min="0"
-                label="Preço"
-                type="number"
-                value={price}
-                onChange={({ target }) => setPrice(Number(target.value))}
-              />
-            </fieldset>
+          <Input
+            required
+            autoComplete="off"
+            name="name"
+            label="Nome"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+          />
+          <Input
+            required
+            autoComplete="off"
+            name="price"
+            min="0"
+            label="Preço"
+            type="number"
+            value={price}
+            onChange={({ target }) => setPrice(Number(target.value))}
+          />
+        </fieldset>
 
-            <div>
-              <button type="submit">Cadastrar</button>
-            </div>
-          </form>
-        </Wrapper>
-      </Container>
+        <div>
+          <button type="submit">Cadastrar</button>
+        </div>
+      </Form>
     </DefaultLayout>
   );
 };
