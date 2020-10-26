@@ -5,13 +5,16 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global';
+import AppProvider from './contexts';
 import Routes from './routes';
 
 const App = () => (
   <Router>
     <ThemeProvider theme={theme}>
-      <Routes />
-      <GlobalStyles />
+      <AppProvider>
+        <Routes />
+        <GlobalStyles />
+      </AppProvider>
     </ThemeProvider>
   </Router>
 );

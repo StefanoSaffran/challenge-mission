@@ -15,7 +15,7 @@ export const Container = styled.table`
     thead {
       th {
         text-align: start;
-        padding: ${theme.spacing.default};
+        padding: ${theme.spacing.default} 0;
       }
 
       th:first-child {

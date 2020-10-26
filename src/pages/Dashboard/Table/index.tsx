@@ -4,7 +4,19 @@ import { MdAddShoppingCart } from 'react-icons/md';
 
 import { Container } from './styles';
 
-const Table: React.FC = () => {
+import { useCart, Product } from '~/contexts/cart';
+
+const Table = () => {
+  const { products, addToCart } = useCart();
+
+  function handleAddToCart(product: Product) {
+    addToCart(product);
+  }
+
+  if (!products.length) {
+    return <div />;
+  }
+
   return (
     <Container>
       <thead>
@@ -16,51 +28,18 @@ const Table: React.FC = () => {
       </thead>
 
       <tbody>
-        <tr>
-          <td>Bicicleta</td>
-          <td>R$120,00</td>
-          <td>
-            <button type="button">
-              <MdAddShoppingCart />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Bicicleta</td>
-          <td>R$120,00</td>
-          <td>
-            <button type="button">
-              <MdAddShoppingCart />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Patinete</td>
-          <td>R$120,00</td>
-          <td>
-            <button type="button">
-              <MdAddShoppingCart />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Produto com o nome muuuuito grande!!!!</td>
-          <td>R$120,00</td>
-          <td>
-            <button type="button">
-              <MdAddShoppingCart />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Bicicleta</td>
-          <td>R$120,00</td>
-          <td>
-            <button type="button">
-              <MdAddShoppingCart />
-            </button>
-          </td>
-        </tr>
+        {products &&
+          products.map(product => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>R${product.price}</td>
+              <td>
+                <button type="button" onClick={() => handleAddToCart(product)}>
+                  <MdAddShoppingCart />
+                </button>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </Container>
   );
