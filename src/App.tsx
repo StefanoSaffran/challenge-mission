@@ -1,16 +1,19 @@
 import React from 'react';
 
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global';
-import Register from './pages/Register';
+import Routes from './routes';
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <Register />
-    <GlobalStyles />
-  </ThemeProvider>
+  <Router>
+    <ThemeProvider theme={theme}>
+      <Routes />
+      <GlobalStyles />
+    </ThemeProvider>
+  </Router>
 );
 
 export default App;

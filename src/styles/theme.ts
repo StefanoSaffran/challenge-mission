@@ -9,7 +9,7 @@ export default {
     lightGrey: '#f3f3f3',
     label: '#fff',
     background: '#131200',
-    backgroundAlternative: '#252412',
+    backgroundAlternative: '#232119',
   },
   fontSizes: {
     huge: '2.4rem',
@@ -36,7 +36,7 @@ export default {
     tiny: '0.2rem',
   },
   shadows: {
-    default: '0 0.5rem 2rem rgba(0, 0, 0, 0.08)',
-    flat: '0 0.2rem 0.2rem rgba(0, 0, 0, 0.08)',
+    default: '0 0.5rem 2rem rgba(250, 250, 200, 0.09)',
+    flat: '0 0.2rem 0.2rem rgba(250, 250, 200, 0.1)',
   },
 };

@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface IBadgeProps {
+  hasProducts: number;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -47,12 +51,47 @@ export const LeftNav = styled.div`
 `;
 
 export const RightNav = styled.div`
-  width: min(30rem, 40vw);
+  width: max(22rem, min(35rem, 42vw));
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   button {
-    margin-left: 1.6rem;
   }
+`;
+
+export const Badge = styled.button<IBadgeProps>`
+  ${({ theme }) => css`
+    position: relative;
+    background: none;
+    margin: 1.6rem 0 0 1.6rem;
+
+    svg {
+      stroke: ${theme.colors.lightGrey};
+    }
+
+    sup {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.primary};
+      position: absolute;
+      width: 1.8rem;
+      height: 1.8rem;
+      right: -0.8rem;
+      top: -0.4rem;
+      border-radius: 50%;
+      visibility: hidden;
+      transition: all 0.5s;
+    }
+  `}
+
+  ${({ hasProducts }) =>
+    hasProducts &&
+    css`
+      sup {
+        visibility: visible;
+        display: flex;
+      }
+    `}
 `;
