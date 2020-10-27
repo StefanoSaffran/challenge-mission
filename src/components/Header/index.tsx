@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 
 import { FiShoppingBag, FiArrowLeft } from 'react-icons/fi';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { Container, Wrapper, LeftNav, RightNav, Badge } from './styles';
 import Input from '../Input';
@@ -36,7 +36,7 @@ const Header = () => {
         </LeftNav>
 
         <RightNav>
-          {pathname !== '/cart' && (
+          {pathname === '/' && (
             <Input
               autoComplete="off"
               name="search"
