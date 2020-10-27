@@ -35,29 +35,28 @@ export const LeftNav = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.large};
   font-weight: 700;
 
-  > svg {
-    cursor: pointer;
-    width: max(8rem, min(12.4rem, 22vw));
-    height: max(4rem, min(5rem, 25vw));
+  > a {
+    > svg {
+      cursor: pointer;
+      width: max(8rem, min(12.4rem, 22vw));
+      height: max(4rem, min(5rem, 25vw));
 
-    rect {
-      fill: transparent;
-    }
+      rect {
+        fill: transparent;
+      }
 
-    path {
-      fill: ${({ theme }) => theme.colors.primaryLight};
+      path {
+        fill: ${({ theme }) => theme.colors.primaryLight};
+      }
     }
   }
 `;
 
 export const RightNav = styled.div`
-  width: max(22rem, min(35rem, 42vw));
+  width: max(25rem, min(35rem, 42vw));
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-  button {
-  }
 `;
 
 export const Badge = styled.button<IBadgeProps>`

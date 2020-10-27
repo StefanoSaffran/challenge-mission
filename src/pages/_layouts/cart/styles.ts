@@ -15,8 +15,4 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   margin-top: 3rem;
-
-  @media (max-width: 670px) {
-    flex-direction: column;
-  }
 `;
