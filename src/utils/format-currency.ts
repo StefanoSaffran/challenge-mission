@@ -1,6 +1,12 @@
-const formatCurrency = (value: number) =>
-  new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' })
-    .format(value)
-    .replace(/\u00A0/, ' ');
+const formatCurrency = (value: number) => {
+  if (!Number(value)) return '';
+
+  const amount = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value / 100);
+
+  return `${amount}`;
+};
 
 export default formatCurrency;
