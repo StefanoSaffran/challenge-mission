@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import {
-  MdAddCircleOutline,
-  MdDelete,
-  MdRemoveShoppingCart,
-  MdRemoveCircleOutline,
-} from 'react-icons/md';
-import { useTheme } from 'styled-components';
+import { MdRemoveShoppingCart } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 import {
   ProductTable,
@@ -15,14 +10,25 @@ import {
   StartShopping,
   TableWrapper,
 } from './styles';
+import Tr from './Tr';
 
+import { useCart } from '~/contexts/cart';
+import Button from '~/components/Button';
 import { formatCurrency } from '~/utils';
-import { useCart, CartProduct } from '~/contexts/cart';
 
 const Table = () => {
-  const { cart } = useCart();
-  const { colors } = useTheme();
+  const history = useHistory();
+  const { cart, getTotal, removeAll } = useCart();
 
+  const total = useMemo(() => getTotal(), [getTotal]);
+
+  function handleRedirectToDashboard() {
+    history.push('/');
+  }
+
+  function handleCheckout() {
+    removeAll();
+  }
   return (
     <>
       {cart.length === 0 ? (
@@ -32,7 +38,9 @@ const Table = () => {
           <div>
             <h2>Oops...</h2>
             <p>Seu carrinho esta vazio!</p>
-            <StartShopping to="/">Comece a comprar</StartShopping>
+            <StartShopping onClick={handleRedirectToDashboard}>
+              Comece a comprar
+            </StartShopping>
           </div>
         </EmptyCart>
       ) : (
@@ -41,52 +49,23 @@ const Table = () => {
             <ProductTable>
               <thead>
                 <tr>
-                  <th>PRODUCT</th>
-                  <th>AMOUNT</th>
+                  <th>PRODUTO</th>
+                  <th>QUANTIDADE</th>
                   <th>SUBTOTAL</th>
                 </tr>
               </thead>
               <tbody>
                 {cart.map(product => (
-                  <tr key={product.id}>
-                    <td>
-                      <strong>{product.name}</strong>
-                    </td>
-                    <td>
-                      <div>
-                        <button type="button" onClick={() => {}}>
-                          <MdRemoveCircleOutline
-                            size={20}
-                            color={colors.primary}
-                          />
-                        </button>
-                        <input type="text" readOnly value={product.quantity} />
-                        <button type="button" onClick={() => {}}>
-                          <MdAddCircleOutline
-                            size={20}
-                            color={colors.primary}
-                          />
-                        </button>
-                      </div>
-                    </td>
-                    <td>
-                      <strong>{formatCurrency(+product.price)}</strong>
-                    </td>
-                    <td>
-                      <button type="button" onClick={() => {}}>
-                        <MdDelete size={20} color={colors.primary} />
-                      </button>
-                    </td>
-                  </tr>
+                  <Tr key={product.id} product={product} />
                 ))}
               </tbody>
             </ProductTable>
 
             <footer>
-              <button type="submit">Finalizar Compra</button>
+              <Button onClick={handleCheckout}>Finalizar Compra</Button>
               <Total>
                 <span>TOTAL:</span>
-                <strong>R$120,00</strong>
+                <strong>{formatCurrency(total)}</strong>
               </Total>
             </footer>
           </TableWrapper>
