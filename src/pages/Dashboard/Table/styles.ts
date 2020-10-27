@@ -29,7 +29,6 @@ export const Container = styled.table`
 
       th:last-child {
         width: 5%;
-        /* width: max(12rem, min(18rem, 23vw)); */
       }
     }
 
@@ -38,7 +37,6 @@ export const Container = styled.table`
 
       tr {
         height: 57px;
-        border-radius: ${theme.radii.small};
 
         td:first-child {
           padding-left: 0.8rem;
@@ -47,10 +45,13 @@ export const Container = styled.table`
 
       button {
         background: transparent;
-        color: ${theme.colors.primaryLight};
 
         svg {
-          fill: ${theme.colors.primaryLight};
+          fill: ${theme.colors.primaryDark};
+
+          &:hover {
+            fill: ${theme.colors.primary};
+          }
         }
       }
     }
