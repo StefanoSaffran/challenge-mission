@@ -16,8 +16,6 @@ export default {
     extraLarge: '2rem',
     large: '1.6rem',
     default: '1.4rem',
-    small: '1.2rem',
-    tiny: '1rem',
   },
   spacing: {
     default: '1.6rem',
@@ -27,13 +25,10 @@ export default {
   },
   transition: {
     default: '180ms ease-in-out',
+    long: '360ms ease-in-out',
   },
   radii: {
     default: '0.8rem',
-    small: '0.4rem',
-    smallTop: '0.4rem 0.4rem 0 0',
-    smallBottom: '0 0 0.4rem 0.4rem',
-    tiny: '0.2rem',
   },
   shadows: {
     default: '0 0.5rem 2rem rgba(250, 250, 200, 0.09)',

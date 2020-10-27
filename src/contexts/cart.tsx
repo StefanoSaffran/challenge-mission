@@ -27,22 +27,23 @@ export type CartProduct = {
 export type CartContext = {
   products: Product[];
   cart: CartProduct[];
+  filter: string;
+  handleFilter(name: string): void;
   addProduct(item: Product): void;
   addToCart(item: Omit<CartProduct, 'quantity'>): void;
-  /* addToCart(item: Product): void;
+  getTotalQuantity(): number;
   increment(id: string): void;
   decrement(id: string): void;
-  removeProduct(id: string): void;
-  removeAll(): void;
-  getQuantity(id: string): number;
-  getTotalQuantity(): number;
   getSubTotal(id: string): number;
-  getTotal(): number; */
+  removeProduct(id: string): void;
+  getTotal(): number;
+  removeAll(): void;
 };
 
 const CartContext = createContext<CartContext | null>(null);
 
 const CartProvider = ({ children }: PropsWithChildren<unknown>) => {
+  const [filter, setfilter] = useState('');
   const [products, setProducts] = useState<Product[]>(() => {
     const storedProducts = localStorage.getItem(storageKey('products'));
 
@@ -79,6 +80,10 @@ const CartProvider = ({ children }: PropsWithChildren<unknown>) => {
     setProducts(oldProducts => [...oldProducts, { ...product, id: uuidv4() }]);
   }, []);
 
+  const handleFilter = useCallback((name: string) => {
+    setfilter(name);
+  }, []);
+
   const addToCart = useCallback(
     (newProduct: Product) => {
       const checkIfNewProduct = cart.find(
@@ -110,14 +115,111 @@ const CartProvider = ({ children }: PropsWithChildren<unknown>) => {
     [cart],
   );
 
+  const getTotalQuantity = useCallback(() => {
+    const totalQuantity = cart.reduce(
+      (total, { quantity }) => total + quantity,
+      0,
+    );
+
+    return totalQuantity;
+  }, [cart]);
+
+  const increment = useCallback(
+    async (id: string) => {
+      const updatedProducts = cart.map(product => {
+        if (product.id !== id) return product;
+
+        const updatedProduct = {
+          ...product,
+          quantity: product.quantity + 1,
+        };
+
+        return updatedProduct;
+      });
+
+      setCart(updatedProducts);
+    },
+    [cart],
+  );
+
+  const decrement = useCallback(
+    async (id: string) => {
+      const updatedProducts = cart
+        .map(product => {
+          if (product.id !== id) return product;
+
+          const updatedProduct = {
+            ...product,
+            quantity: product.quantity - 1,
+          };
+
+          return updatedProduct;
+        })
+        .filter(product => product.quantity > 0);
+
+      setCart(updatedProducts);
+    },
+    [cart],
+  );
+
+  const getSubTotal = useCallback(
+    (id: string) => {
+      const foundProduct = cart.find(product => product.id === id);
+
+      if (!foundProduct) return 0;
+
+      const subtotal = foundProduct.quantity * Number(foundProduct.price);
+      return subtotal;
+    },
+    [cart],
+  );
+
+  const getTotal = useCallback(() => {
+    return cart.reduce((total, nextProduct) => {
+      const subtotal = nextProduct.quantity * Number(nextProduct.price);
+      return total + subtotal;
+    }, 0);
+  }, [cart]);
+
+  const removeProduct = useCallback((id: string) => {
+    setCart(oldProducts => oldProducts.filter(product => product.id !== id));
+  }, []);
+
+  const removeAll = useCallback(() => {
+    setCart([]);
+  }, []);
+
   const value = React.useMemo(
     () => ({
       products,
       cart,
+      filter,
+      handleFilter,
       addProduct,
       addToCart,
+      getTotalQuantity,
+      increment,
+      decrement,
+      getSubTotal,
+      getTotal,
+      removeProduct,
+      removeAll,
     }),
-    [products, cart, addProduct, addToCart],
+    [
+      products,
+      cart,
+      filter,
+      handleFilter,
+      addProduct,
+      addToCart,
+      getTotalQuantity,
+      increment,
+      decrement,
+      getSubTotal,
+      getTotal,
+      removeProduct,
+      removeAll,
+    ],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
