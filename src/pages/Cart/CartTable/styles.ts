@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
 
 import Button from '~/components/Button';
 

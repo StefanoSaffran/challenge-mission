@@ -76,30 +76,3 @@ const Table = () => {
 };
 
 export default Table;
-
-{
-  /* <Container>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th />
-        </tr>
-      </thead>
-
-      <tbody>
-        {products &&
-          products.map(product => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>R${product.price}</td>
-              <td>
-                <button type="button" onClick={() => handleAddToCart(product)}>
-                  <MdAddShoppingCart />
-                </button>
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </Container> */
-}
