@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -11,14 +11,12 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    max-width: 113rem;
-    width: 100%;
-    display: flex;
-    margin-top: 3rem;
+  max-width: 113rem;
+  width: 100%;
+  display: flex;
+  margin-top: 3rem;
 
-    @media (max-width: 670px) {
-      flex-direction: column;
-    }
-  `}
+  @media (max-width: 670px) {
+    flex-direction: column;
+  }
 `;
