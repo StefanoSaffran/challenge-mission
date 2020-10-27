@@ -35,14 +35,8 @@ export const Form = styled.form`
         padding: 3.2rem 2.4rem 0;
 
         > button {
-          background: ${theme.colors.primaryLight};
-          color: ${theme.colors.darkGrey};
-          font-weight: 500;
           width: 100%;
           padding: 1.2rem;
-          margin: 0 auto;
-          text-align: center;
-          border-radius: ${theme.radii.default};
         }
       }
     }

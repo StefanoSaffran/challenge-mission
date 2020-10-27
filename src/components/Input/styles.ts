@@ -5,10 +5,7 @@ export const Container = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-
-    & + div {
-      margin-top: 1.6rem;
-    }
+    margin-bottom: 1.6rem;
 
     input {
       width: 100%;
