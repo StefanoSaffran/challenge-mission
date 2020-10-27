@@ -27,15 +27,14 @@ export const Wrapper = styled.div`
 `;
 
 export const LeftNav = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  font-weight: 700;
+    font-size: ${theme.fontSizes.large};
+    font-weight: 700;
 
-  > a {
     > svg {
       cursor: pointer;
       width: max(8rem, min(12.4rem, 22vw));
@@ -46,10 +45,26 @@ export const LeftNav = styled.div`
       }
 
       path {
-        fill: ${({ theme }) => theme.colors.primaryLight};
+        fill: ${theme.colors.primaryLight};
       }
     }
-  }
+
+    > a {
+      display: flex;
+      align-items: center;
+      margin: ${theme.spacing.large};
+      color: ${theme.colors.primaryDark};
+      transition: color ${theme.transition.default};
+
+      svg {
+        margin-right: 1.2rem;
+      }
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.primary};
+      }
+    }
+  `}
 `;
 
 export const RightNav = styled.div`
@@ -63,10 +78,15 @@ export const Badge = styled.button<IBadgeProps>`
   ${({ theme }) => css`
     position: relative;
     background: none;
-    margin: 1.6rem 0 0 1.6rem;
+    margin-left: ${theme.spacing.default};
 
     svg {
       stroke: ${theme.colors.lightGrey};
+      transition: ${theme.transition.long};
+
+      &:hover {
+        stroke: ${theme.colors.primary};
+      }
     }
 
     sup {
