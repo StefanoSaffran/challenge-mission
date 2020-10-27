@@ -9,7 +9,7 @@ import React, {
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { storageKey } from '~/utils';
+import { storageKey } from '../utils';
 
 export type Product = {
   id: string;
