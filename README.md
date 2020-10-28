@@ -59,8 +59,15 @@ To run the application you will need:
 ### Frontend
 
 ```bash
-# in another tab of the terminal install the frontend dependencies and run it
-$ cd frontend
+Clone the repository and install the dependencies.
+```bash
+# to clone the repository
+$ git clone https://github.com/StefanoSaffran/challenge-mission.git
+
+# go into the project folder
+$ cd challenge-mission
+
+#install the dependencies and run it
 $ yarn
 $ yarn start
 ```
